@@ -18,9 +18,9 @@ class TasksFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dao = TaskDatabase.getInstance(application).taskDao
         val viewModelFactory = TasksViewModelFactory(dao)
-        val viewModel = ViewModelProvider(
-            this, viewModelFactory).get(TasksViewModel::class.java)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(TasksViewModel::class.java)
         binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         return view
     }
