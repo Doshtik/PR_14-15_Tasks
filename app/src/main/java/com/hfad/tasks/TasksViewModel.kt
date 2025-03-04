@@ -1,18 +1,23 @@
 package com.hfad.tasks
 
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
 class TasksViewModel(val dao: TaskDao) : ViewModel() {
     var newTaskName = ""
-    val tasks = dao.getAll()
 
-    private val tasks = dao.getAll()
-    val tasksString = Transformations.map(tasks) {
-            tasks -> formatTasks(tasks)
+    private val tasks: LiveData<List<Task>> = dao.getAll()
+    val tasksString: MutableLiveData<String> = MutableLiveData()
+
+    init {
+        tasks.observeForever { taskList ->
+            tasksString.value = formatTasks(taskList)
+        }
     }
+
     fun addTask() {
         viewModelScope.launch {
             val task = Task()
