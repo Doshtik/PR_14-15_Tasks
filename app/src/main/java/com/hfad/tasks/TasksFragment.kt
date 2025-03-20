@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
 import com.hfad.tasks.databinding.FragmentTasksBinding
 
 class TasksFragment : Fragment() {
@@ -24,6 +25,17 @@ class TasksFragment : Fragment() {
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        val adapter = TaskItemAdapter()
+        binding.tasksList.adapter = adapter
+
+        //Наблюдаем за свойством tasks модели представления.
+        viewModel.tasks.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                //Если список задач изменился, он присваивается свойству data адаптера.
+                adapter.data = it
+            }
+        })
 
         return view
     }
