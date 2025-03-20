@@ -32,12 +32,30 @@
             android:text="@string/save_task"
             android:onClick="@{() -> viewModel.addTask()}"/>
 
+        <!-- Размещение элементов по горизонтали или по вертикали
+        <androidx.recyclerview.widget.RecyclerView ...
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
+        android:orientation="vertical" />-->
+
+        <!--Размещение элементов по сетке
+        <androidx.recyclerview.widget.RecyclerView ...
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2" />-->
+
+        <!-- Размещение элементов в неравномерной сетке
+        <androidx.recyclerview.widget.RecyclerView ...
+        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+        app:spanCount="2" />-->
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tasks_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="top"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2" />
     </LinearLayout>
 </layout>
