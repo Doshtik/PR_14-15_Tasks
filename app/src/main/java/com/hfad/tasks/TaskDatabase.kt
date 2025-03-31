@@ -17,7 +17,9 @@ abstract class TaskDatabase : RoomDatabase() {
             synchronized(this) {
                 var instance = INSTANCE
                 if (instance == null) {
-                    instance = Room.databaseBuilder(context.applicationContext, TaskDatabase::class.java, "tasks_database").build()
+                    instance = Room
+                        .databaseBuilder(context.applicationContext, TaskDatabase::class.java, "tasks_database")
+                        .build()
                     INSTANCE = instance
                 }
                 return instance

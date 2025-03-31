@@ -15,7 +15,6 @@ class TaskItemAdapter : RecyclerView.Adapter<TaskItemAdapter.TaskItemViewHolder>
             notifyDataSetChanged()
         }
 
-    //Кол-во элементов.
     override fun getItemCount() = data.size
 
     //Вызывается каждый раз, когда требуется создать держатель представления.
@@ -27,6 +26,7 @@ class TaskItemAdapter : RecyclerView.Adapter<TaskItemAdapter.TaskItemViewHolder>
         val item = data[position]
         holder.bind(item)
     }
+
     class TaskItemViewHolder(val rootView: CardView) : RecyclerView.ViewHolder(rootView) {
         val taskName = rootView.findViewById<TextView>(R.id.task_name)
         val taskDone = rootView.findViewById<CheckBox>(R.id.task_done)
