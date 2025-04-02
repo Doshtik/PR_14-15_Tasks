@@ -33,7 +33,7 @@ class TasksFragment : Fragment() {
         viewModel.tasks.observe(viewLifecycleOwner, Observer {
             it?.let {
                 //Если список задач изменился, он присваивается свойству data адаптера.
-                adapter.data = it
+                adapter.submitList(it)
             }
         })
 
